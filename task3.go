@@ -57,16 +57,16 @@ func FanIn(ctx context.Context, channels ...<-chan string) <-chan string {
 }
 
 func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second) [cite: 180]
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
 
-	ch1 := startServer(ctx, "Alpha") [cite: 183]
-	ch2 := startServer(ctx, "Beta") [cite: 185]
-	ch3 := startServer(ctx, "Gamma") [cite: 187]
+	ch1 := startServer(ctx, "Alpha")
+	ch2 := startServer(ctx, "Beta")
+	ch3 := startServer(ctx, "Gamma")
 
-	ch4 := FanIn(ctx, ch1, ch2, ch3) [cite: 189]
+	ch4 := FanIn(ctx, ch1, ch2, ch3)
 
 	for val := range ch4 {
-		fmt.Println(val) [cite: 192]
+		fmt.Println(val)
 	}
 }
